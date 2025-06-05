@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .area {
+      width: 200px;
+      height: 400px;
+      border: 3px solid black;
+      display: flex;
+      overflow: auto; 
+      word-break: break-word;
+      justify-content: center;
+      align-items: center;  
+      text-align: center; 
+    }
+
+    .two-columns {
+      display: flex;
+      justify-content: center;
+    }
+
+    .box1 {
+      display: flex;
+      align-items: center;
+    }
+
+    .label1{
+      width: 87px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .label3 {
+      width: 98px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .label2 {
+      width: 58px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .bottom-block {
+      width: 523px;
+      flex-shrink: 0;
+      margin: 0 auto;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .radio {
+      margin-right: 3px;
+      margin-left: 3px;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <br><br>
+    <div class="two-columns">
+      <div class="left-block">
+        <div class="box1">
+          <label class="label1">너비 :</label>
+          <input type="text" style="width: 75px;" id="1" />
+          <label style="margin-left: 4px;">px</label>
+        </div>
+        <br />
+        <div class="box1">
+          <label class="label1">글자크기 :</label>
+          <input type="text" style="width: 70px;" id="2" />
+          <label style="margin-left: 4px;">px</label>
+        </div>
+        <br />
+        <div class="box1">
+          <label class="label1">글자색 :</label>
+          <input type="text" style="width: 172px;" id="3" />
+        </div>
+      </div>
+
+      <div class="right-block">
+        <div class="box1">
+          <label class="label2">높이 :</label>
+          <input type="text" style="width: 75px;" id="4" />
+          <label style="margin-left: 4px;">px</label>
+        </div>
+        <br />
+        <div class="box1">
+          <label class="label2">굵기 :</label>
+          <label>보통 <input class="radio" type="radio" name="thickness" id="5" value="normal" checked /></label>
+          <label>굵게 <input class="radio" type="radio" name="thickness" id="6" value="bold" /></label>
+        </div>
+        <br />
+        <div class="box1">
+          <label class="label2">배경색 :</label>
+          <input type="text" id="13" />
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="bottom-block">
+      <div class="box1">
+        <label class="label3">가로정렬:</label>
+        <label>왼쪽 <input class="radio" type="radio" name="horizontal" id="7" value="left" /></label>
+        <label>가운데 <input class="radio" type="radio" name="horizontal" id="8" value="center" checked /></label>
+        <label>오른쪽 <input class="radio" type="radio" name="horizontal" id="9" value="right" /></label>
+      </div>
+      <br />
+      <div class="box1">
+        <label class="label3">세로정렬:</label>
+        <label>위 <input class="radio" type="radio" name="vertical" id="10" value="flex-start" /></label>
+        <label>가운데 <input class="radio" type="radio" name="vertical" id="11" value="center" checked /></label>
+        <label>아래 <input class="radio" type="radio" name="vertical" id="12" value="flex-end" /></label>
+      </div>
+      <br />
+      <div class="box1">
+        <label class="label3">출력 문자열 :</label>
+        <input type="text" style="width: 410px;" id="showIt" />
+      </div>
+      <br />
+      <input type="button" onclick="changeCharacter()" value="적용하기" />
+      <br /><br /><br />
+      <div style="display: flex; justify-content: center;">
+        <div id="area1" class="area"></div>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    function changeCharacter() {
+      const area = document.getElementById("area1");
+      const title = document.getElementById("showIt").value;
+
+      area.innerText = title;
+      area.style.width = document.getElementById("1").value + 'px';
+      area.style.height = document.getElementById("4").value + 'px';
+      area.style.color = document.getElementById("3").value;
+      area.style.fontSize = document.getElementById("2").value + 'px';
+      area.style.backgroundColor = document.getElementById("13").value;
+
+      const fontWeight = document.querySelector('input[name="thickness"]:checked').value;
+      const horizontal = document.querySelector('input[name="horizontal"]:checked').value;
+      const vertical = document.querySelector('input[name="vertical"]:checked').value;
+
+      area.style.fontWeight = fontWeight;
+      area.style.justifyContent = horizontal;
+      area.style.textAlign = horizontal;
+      area.style.alignItems = vertical;
+    }
+  </script>
+</body>
+</html>
